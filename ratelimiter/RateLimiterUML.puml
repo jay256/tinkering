@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+!pragma layout smetana
+
+abstract class AbstractRateLimiter
+class HttpRateLimiter
+interface RateLimiter
+interface TokenRateLimiter
+class HttpTokenRateLimiter
+
+RateLimiter <|-- TokenRateLimiter
+RateLimiter <|-- AbstractRateLimiter
+AbstractRateLimiter <|-- HttpRateLimiter
+HttpRateLimiter <|-- HttpTokenRateLimiter
+TokenRateLimiter <|-- HttpTokenRateLimiter
+
+RateLimiter : rateLimit()
+TokenRateLimiter : rateLimitWithToken()
+AbstractRateLimiter : rateLimit()
+HttpRateLimiter : rateLimit()
+HttpTokenRateLimiter : rateLimitWithToken()
+
+@enduml

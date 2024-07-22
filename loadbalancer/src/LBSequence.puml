@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor Client as client
+participant LoadBalancer as lb
+participant ServerRegistry as reg
+
+autonumber
+
+client -> lb : send request
+lb -> reg : fetch registered servers
+reg --> lb : list of registered servers
+lb --> client : accepted
+
+@enduml

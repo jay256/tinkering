@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+abstract class LoadBalancer
+interface Controller
+class ServerRegistry
+class ServerNode
+class Request
+class RoundRobinLoadBalancer
+
+Controller <|-- LoadBalancer
+LoadBalancer <|-- RoundRobinLoadBalancer
+LoadBalancer o-- ServerRegistry
+LoadBalancer o-- ServerNode
+ServerRegistry o-- ServerNode
+LoadBalancer o-- Request
+
+Controller : handleRequest()
+LoadBalancer : abstract loadBalance()
+LoadBalancer : handleRequest()
+LoadBalancer : initialize()
+LoadBalancer : ServerNode lastAssignedServer
+RoundRobinLoadBalancer : loadBalance()
+
+ServerRegistry : register()
+ServerRegistry : Set<ServerNode> nodeSet;
+
+ServerNode : int serverId
+Request : int requestId
+
+@enduml

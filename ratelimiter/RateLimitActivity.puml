@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:RateLimiter.handleRequest();
+if (validRequest?) then (yes)
+    :rateLimit;
+else (no)
+    :dropRequest;
+endif
+if (rateLimitAllow?) then (yes)
+    :processRequest;
+else (no)
+    :dropRequest;
+endif
+
+stop
+
+@enduml
