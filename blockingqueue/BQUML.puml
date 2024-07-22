@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface MyQueue
+abstract class MyAbstractQueue
+class BlockingQueue
+
+MyQueue <|-- MyAbstractQueue
+MyAbstractQueue <|-- BlockingQueue
+
+MyQueue : enqueue()
+MyQueue : dequeue()
+
+@enduml
